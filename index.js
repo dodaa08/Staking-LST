@@ -1,7 +1,7 @@
 import express from 'express';
 import { mint } from './Mint.js';
 
-const PORT = 3001;
+const PORT = 3002;
 const app = express();
 
 app.use(express.json());
@@ -58,8 +58,10 @@ const stake = async (req, res) => {
 
 
 app.get("/",(req, res)=>{
-    console.log(result);
-    res.send("Result : ", result);
+    if(result){
+        console.log(result);
+        res.send("Result : ", result);
+    }
 })
 
 
