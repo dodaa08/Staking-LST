@@ -1,11 +1,12 @@
 import express from 'express';
 import { mint } from './Mint.js';
 
-const PORT = 3000;
+const PORT = 3001;
 const app = express();
 
 app.use(express.json());
 
+let result;
 
 const stake = async (req, res) => {
     try {
@@ -15,6 +16,7 @@ const stake = async (req, res) => {
             type,
             transactionError,
         } = req.body;
+        result = nativeTransfers;
         if(nativeTransfers){
             console.log(nativeTransfers);
         }
@@ -53,6 +55,12 @@ const stake = async (req, res) => {
         return res.status(500).send('Internal server error');
     }
 };
+
+
+app.get("/",(req, res)=>{
+    console.log(result);
+    res.send("Result : ", result);
+})
 
 
 
